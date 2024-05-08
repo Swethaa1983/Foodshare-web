@@ -1,0 +1,76 @@
+{% extends 'baseuser.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<style>
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    color:white;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #444242;}
+  
+  #customers tr:hover {background-color: #010708;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+   
+  }
+  a{
+      color: aliceblue;
+    }
+  </style>  
+
+<br><br><br><br><br><br>
+
+      <center><table id="customers">
+        {% if data %}
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Food</th>
+          <th>Source</th>
+          <th>Place</th>
+          <th>Contact</th>
+          <th>links</th>
+          <th>Action</th>
+        </tr>
+        
+       {% for x in data %}
+       <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ x.userr }}</td>
+        <td>{{ x.food_name }}</td>
+        <td>{{ x.source }}</td>
+        <td>{{ x.address }}</td>
+        <td>{{ x.mobile_number }}</td>
+        <td><a href="{{ x.link }}" target="_blank"><i class="fa-solid fa-location-dot"></i> Locations</a></td>
+        <td><center><a href="/complete/{{ x.id }}"><button class="btn btn-outline-info">click to Complete</button></a></center></td>
+      </tr>
+       {% endfor %}
+       {% else %}
+       <td colspan="4"><center>-------------No Data Fount-------------</center></td>
+
+       {% endif %}
+      </table></center>
+
+
+
+
+
+{% endblock %}
+
+
